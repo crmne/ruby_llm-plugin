@@ -8,7 +8,16 @@
     "url": "https://paolino.me"
   },
   "homepage": "https://rubyllm.com/ai-coding-assistants/",
+  "documentationUrl": "https://rubyllm.com/ai-coding-assistants/",
+  "supportUrl": "https://github.com/crmne/ruby_llm/issues",
+  "privacyPolicyUrl": "https://github.com/crmne/ruby_llm-plugin#privacy",
   "repository": "https://github.com/crmne/ruby_llm-plugin",
   "license": "MIT",
-  "keywords": ["ruby", "rails", "ai", "llm", "agents"]
+  "keywords": [
+    "ruby",
+    "rails",
+    "ai",
+    "llm",
+    "agents"
+  ]
 }
