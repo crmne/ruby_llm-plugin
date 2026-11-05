@@ -1,0 +1,37 @@
+name: Sync skill
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: crmne/ruby_llm
+          path: upstream
+          sparse-checkout: skills/rubyllm
+      - name: Copy the skill and raise the version when it changed
+        run: |
+          rm -rf skills/rubyllm
+          cp -r upstream/skills/rubyllm skills/rubyllm
+          rm -rf upstream
+          if [ -z "$(git status --porcelain skills)" ]; then
+            echo "Skill unchanged."
+            exit 0
+          fi
+          version="$(date -u +%Y.%-m.%-d)"
+          jq --arg version "$version" '.version = $version' .claude-plugin/plugin.json > plugin.json.tmp
+          mv plugin.json.tmp .claude-plugin/plugin.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add skills .claude-plugin/plugin.json
+          git commit -m "Sync the rubyllm skill from crmne/ruby_llm"
+          git push
