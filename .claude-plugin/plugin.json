@@ -1,7 +1,7 @@
 {
   "name": "rubyllm",
   "displayName": "RubyLLM",
-  "version": "2026.11.8",
+  "version": "2026.11.9",
   "description": "Build and maintain Ruby and Rails applications with RubyLLM: chats, agents, tools, MCP, structured output, evaluations, media, embeddings, and Rails integration.",
   "author": {
     "name": "Carmine Paolino",
